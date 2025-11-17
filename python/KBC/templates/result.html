@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+    <title>KBC Result</title>
+</head>
+<body>
+    {% if completed %}
+        <h2>Congratulations! You completed the quiz.</h2>
+    {% else %}
+        <h2>Game Over!</h2>
+    {% endif %}
+    <p>Your total winnings: Rs. {{ earned }}</p>
+    <a href="{{ url_for('quiz') }}">Play Again</a>
+</body>
+</html>
