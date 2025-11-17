@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>KBC Quiz</title>
+</head>
+<body>
+    <h2>Question {{ current_index }} of {{ total }}</h2>
+    <p>Current Prize Money: Rs. {{ earned_money }}</p>
+
+    <p><strong>{{ question }}</strong></p>
+
+    <form method="POST">
+        {% for option in options %}
+            {% if option.strip() %}
+                <label>
+                    <input type="radio" name="option" value="{{ option[0] }}"> {{ option }}
+                </label><br>
+            {% endif %}
+        {% endfor %}
+
+        <br>
+
+        {% if not lifelines.fifty_fifty %}
+            <button type="submit" name="use_lifeline" value="50:50" onclick="document.getElementById('lifeline_input').value='50:50';">Use 50:50 Lifeline</button>
+        {% endif %}
+
+        {% if not lifelines.flip %}
+            <button type="submit" name="use_lifeline" value="flip" onclick="document.getElementById('lifeline_input').value='flip';">Use Flip Question Lifeline</button>
+        {% endif %}
+
+        <input type="hidden" id="lifeline_input" name="lifeline" value="">
+
+        <br><br>
+
+        <button type="submit">Submit Answer</button>
+        <button type="submit" name="quit" value="quit">Quit</button>
+    </form>
+</body>
+</html>
